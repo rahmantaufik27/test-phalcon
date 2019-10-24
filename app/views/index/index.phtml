@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<style>
+	table, th, td {
+	  border: 1px solid black;
+	  border-collapse: collapse;
+	  margin: 15px 0;
+	  padding: 3px;
+	}
+	</style>
+</head>
+<body>
+	<h2>Website sederhana!</h2>
+
+
+	<form action="index/add" method="POST">
+		<input type="hidden" id="id" name="id">
+		Nama:<br>
+		<input type="text" id="name" name="name"><br>
+		Email:<br>
+		<input type="text" id="email" name="email"><br><br>
+		<input type="submit" value="Submit">
+	</form>
+	<br><br>
+
+	<table>
+		<thead>
+			<tr>
+				<th>No.</th>
+				<th>Nama</th>
+				<th>Email</th>
+				<th>Aksi</th>
+			</tr>
+		<thead>
+		<tfoot>
+			<tr>
+	            <td colspan="4">
+	            	jumlah data: <?php echo $users->count(); ?>
+	            </td>
+	        </tr>
+		</tfoot>
+		<tbody>
+			<?php 
+				$i = 1;
+				foreach ($users as $user){ 
+			?>
+			<tr>
+				<p hidden><?php echo $user->id; ?></p>
+				<td><?php echo $i; ?></td>
+				<td><?php echo $user->name; ?></td>
+				<td><?php echo $user->email; ?></td>
+				<td>
+					<a onclick="edit('<?=$user->id?>', '<?=$user->name?>', '<?=$user->email?>')" id="edit" href="javascript:;">Edit</a> | 
+					<a onclick="hapus('<?=$user->id?>', '<?=$user->name?>')" href="javascript:;">Hapus</a>
+				</td>
+			</tr>
+			<?php
+				$i++; 
+				} 
+			?>
+		</tbody>
+	</table>
+</body>
+</html>
+
+<script type="text/javascript">
+    function hapus(id, nama) {
+        var r = confirm("Yakin hapus "+nama+"?");
+        if (r == true) {
+            location.href = "index/del/"+id
+        }
+    }
+
+	function edit(id, name, email) {
+		document.getElementById("id").value = id;
+		document.getElementById("name").value = name;
+		document.getElementById("email").value = email;
+    }
+</script>
