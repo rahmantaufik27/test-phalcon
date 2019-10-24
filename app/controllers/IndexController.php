@@ -27,7 +27,7 @@ class IndexController extends Controller
             // echo "<script>alert('Data berhasil disimpan!');window.location.href='/test-phalcon/public/index';</script>";
             $this->response->redirect("index");
         } else {
-            echo "<script>alert('Maaf lengkapi data terlebih dahulu!');window.location.href='/test-phalcon/public/add';</script>";
+            echo "<script>alert('Maaf lengkapi data terlebih dahulu!');window.location.href='/test-phalcon/public/';</script>";
         }
     }
 
